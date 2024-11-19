@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DK Cinema</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+  <style>
+    body {
+      font-family: "Rubik", sans-serif;
+      background-color: #2b2d42;
+      color: #edf2f4;
+      padding: 20px;
+    }
+
+    h1 i {
+      color: #d90429;
+    }
+
+    .form-control:focus {
+      border-color: #d90429;
+      box-shadow: 0 0 0 0.2rem rgba(217, 4, 41, 0.25);
+    }
+
+    .btn-custom {
+      background-color: #d90429;
+      color: #edf2f4;
+      border: none;
+    }
+
+    .btn-custom:hover {
+      background-color: #ef233c;
+      color: #edf2f4;
+    }
+
+    .movie-image {
+      border-radius: 5px;
+      margin-top: 10px;
+    }
+
+    .form-container {
+      background-color: #343a40;
+      padding: 20px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container text-center">
+    <h1 class="my-4">
+      <i class="fas fa-video"></i> DK Cinema
+    </h1>
+    <h3 class="mb-4">Best Movies About Programmers & Tech Universe</h3>
+
+    <div class="form-container text-start mx-auto" style="max-width: 600px;">
+      <h4 class="text-center mb-4">Add or Update Your Favorite Movie</h4>
+      <form action="/update" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="editid" value="<%= singal?.id || '' %>">
+
+        <div class="mb-3">
+          <label for="movie-title" class="form-label">Movie Name</label>
+          <input type="text" class="form-control" id="movie-title" placeholder="Movie Name" name="name" value="<%= singal?.name || '' %>" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="movie-description" class="form-label">Movie Description</label>
+          <input type="text" class="form-control" id="movie-description" placeholder="Movie Description" name="desc" value="<%= singal?.desc || '' %>" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="movie-price" class="form-label">Movie Price</label>
+          <input type="text" class="form-control" id="movie-price" placeholder="Movie Price" name="price" value="<%= singal?.price || '' %>" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="movie-img" class="form-label">Movie Image</label>
+          <input type="file" class="form-control" id="movie-img" name="image">
+          <img src="<%= singal?.image || '/default-image-path.jpg' %>" width="100px" height="100px" alt="Movie Image" class="movie-image">
+        </div>
+
+        <div class="d-flex justify-content-between">
+          <button type="submit" class="btn btn-custom">
+            Submit <i class="fas fa-random"></i>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
