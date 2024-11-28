@@ -5,8 +5,11 @@ const db = require('./config/db')
 const path = require('path')
 
 app.set('view engine','ejs')
+const cookieparser = require('cookie-parser')
 
 app.use(express.urlencoded())
+
+app.use(cookieparser());
 app.use('/uploads',express.static(path.join(__dirname,'uploads')))
 app.use('/',require('./routes/indexroutes'))
 

@@ -9,6 +9,9 @@ const registerpage = (req, res) => {
     return res.render('res')
 }
 const loginpage = (req, res) => {
+    if(req.cookies['auth']){
+        return res.redirect('/dashbord')
+    }
     return res.render('login')
 }
 
@@ -44,7 +47,11 @@ const loginuser = async (req, res) => {
 }
 
 const dashbordpage = async (req, res) => {
+    
     try {
+        if(!req.cookies['auth']){
+            return res.redirect('/')
+        }
         const { blogename, description, image } = req.body
 
         const user = await blogeuser.find({});
@@ -60,6 +67,9 @@ const dashbordpage = async (req, res) => {
 };
 
 const addbloge = (req, res) => {
+    if(!req.cookies['auth']){
+        return res.redirect('/')
+    }
     return res.render('addbloge')
 }
 
@@ -95,8 +105,10 @@ const deletdata = async (req, res) => {
 
 const editpage = async (req, res) => {
     try {
+        if(!req.cookies['auth']){
+            return res.redirect('/')
+        }
         let id = req.params.id;
-
         let single = await blogeuser.findById(id);
         return res.render('edit', {
             single
@@ -139,7 +151,8 @@ const update = async (req, res) => {
 }
 
 const logeout = async (req, res) => {
-    return res.clearCookie('auth').redirect('/');
+   res.clearCookie('auth')
+   return res.redirect('/');
 }
 
 const readmore = async (req,res) => {
