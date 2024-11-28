@@ -30,5 +30,4 @@ routes.post('/up',fileUpload, update)
 routes.get('/logeout',logeout)
 routes.get('/readmore/:id',readmore)
 
-
 module.exports = routes
