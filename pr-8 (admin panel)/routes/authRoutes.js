@@ -1,7 +1,7 @@
 const express = require('express')
 
 const routes = express.Router()
-const { loginPage, ragisterPage, ragisterData, loginUser, dashboardpage, logoutUser, forgetPassword, otpPage, otpSubmit, setnewPassword, changeoldPassword ,myProfile,editProfile} = require('../controller/authController');
+const { loginPage, ragisterPage, ragisterData, loginUser, dashboardpage, logoutUser, forgetPassword, otpPage, otpSubmit, setnewPassword, changeoldPassword ,myProfile,editProfile,edituserData} = require('../controller/authController');
 const passport = require('passport');
 
 routes.get('/', loginPage);
@@ -24,6 +24,7 @@ routes.post('/changeoldpassword', changeoldPassword)
 // profile 
 
 routes.get('/myprofile',myProfile)
-routes.post('/editprofile',passport.checkuser,editProfile)
+routes.get('/editprofile',passport.checkuser,editProfile)
+routes.post('/edituserdata',edituserData)
 
 module.exports = routes
