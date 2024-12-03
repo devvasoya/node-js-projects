@@ -51,51 +51,102 @@ const logoutUser = (req, res) => {
 }
 
 // forget Password 
-const forgetPassword = async(req, res) => {
-    try{
-        const user = await usermodel.findOne({email:req.body.useremail})
-        if(!user){
+const forgetPassword = async (req, res) => {
+    try {
+
+        const email = req.body.useremail
+        const user = await usermodel.findOne({ email: email })
+        if (!user) {
             console.log("user not found");
         }
 
         // mail send code otp
 
-        const otp = Math.floor(Math.random()*1000000)
+        const otp = Math.floor(Math.random() * 1000000)
 
         var transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-              user: 'devvasoya425@gmail.com',
-              pass: 'yourpassword'
+                user: 'devvasoya425@gmail.com',
+                pass: 'bcjnyspvxfsjgbud'
             }
-          });
-          
-          var mailOptions = {
+        });
+
+        var mailOptions = {
             from: 'devvasoya425@gmail.com',
-            to: req.body.useremail,
+            to: email,
             subject: 'Sending Email using Node.js',
             text: `hii i am dev vasoya your otp is ${otp}`
-          };
-          
-          transporter.sendMail(mailOptions, function(error, info){
+        };
+
+        transporter.sendMail(mailOptions, function (error, info) {
             if (error) {
-              console.log(error);
+                console.log(error);
             } else {
-              console.log('Email sent: ' + info.response);
-              return res.redirect('/otp')
+                console.log('Email sent: ' + info.response);
+                let obj = {
+                    otp: otp,
+                    email: email
+                }
+                res.cookie('otp', obj)
+                return res.redirect('/otp')
             }
-          });
-        
-    }catch(err){
+        });
+    } catch (err) {
         console.log(err);
         return false;
     }
 }
 
-const otpPage = async(req, res) => {
+const otpPage = async (req, res) => {
     return res.render('otp')
 }
 
+const otpSubmit = (req, res) => {
+
+    if (req.body.otp == req.cookies.otp.otp) {
+        return res.redirect('/setnewpassword')
+    } else {
+        console.log("otp not done");
+        return res.redirect('/otp')
+    }
+}
+
+const setnewPassword = (req, res) => {
+    return res.render('setnewPassword')
+}
+
+const changeoldPassword = async (req, res) => {
+
+    try {
+        const { newpassword, confrimpassword } = req.body
+        if (newpassword === confrimpassword) {
+            const useremail = req.cookies.otp.email
+            const user = await usermodel.findOneAndUpdate({ email: useremail }, {
+                password: newpassword
+            })
+            console.log("password is change");
+            return res.redirect('/')
+        } else {
+            console.log("new password and confrim password is not match");
+            return res.redirect('/setnewPassword')
+        }
+    } catch (err) {
+        console.log(err);
+        return false
+    }
+}
+
+
+// profile page 
+
+const myProfile = (req,res) =>{
+    return res.render('myprofile')
+}
+const editProfile = (req,res) =>{
+    return res.render('editprofile')
+}
+
 module.exports = {
-    loginPage, ragisterPage, ragisterData, loginUser, dashboardpage, logoutUser,forgetPassword,otpPage
+    loginPage, ragisterPage, ragisterData, loginUser, dashboardpage, logoutUser, forgetPassword, otpPage, otpSubmit, setnewPassword, changeoldPassword,myProfile,editProfile
 }

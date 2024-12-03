@@ -18,6 +18,9 @@ app.use(session({
     cookie : {
         maxAge : 1000*60*60*24    }
 }))
+
+const cookieparser = require('cookie-parser');
+app.use(cookieparser())
 app.use(passport.initialize())
 app.use(passport.session())
 app.use(passport.setuser)
