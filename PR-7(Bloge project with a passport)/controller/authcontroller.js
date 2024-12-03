@@ -10,7 +10,7 @@ const registerpage = (req, res) => {
 }
 const loginpage = (req, res) => {
     if(res.locals.user){
-        return res.redirect('/dashboard')
+        return res.redirect('/dashbord')
     }
     return res.render('login')
 }
@@ -31,14 +31,8 @@ const registerusers = async (req, res) => {
 
 const loginuser = async (req, res) => {
     try {
-        const { email, password } = req.body
-        const user = await usermodels.findOne({ email: email });
+        
 
-        if (!user || user.password != password) {
-            console.log("email and password is not match");
-            return false;
-        }
-       
         return res.redirect('/dashbord')
     } catch (err) {
         console.log(err);
