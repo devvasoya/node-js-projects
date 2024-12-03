@@ -140,13 +140,14 @@ const changeoldPassword = async (req, res) => {
 
 // profile page 
 
-const myProfile = (req,res) =>{
+const myProfile = (req, res) => {
     return res.render('myprofile')
 }
-const editProfile = (req,res) =>{
+const editProfile = (req, res) => {
+    console.log(req.body.name)
     return res.render('editprofile')
 }
 
 module.exports = {
-    loginPage, ragisterPage, ragisterData, loginUser, dashboardpage, logoutUser, forgetPassword, otpPage, otpSubmit, setnewPassword, changeoldPassword,myProfile,editProfile
+    loginPage, ragisterPage, ragisterData, loginUser, dashboardpage, logoutUser, forgetPassword, otpPage, otpSubmit, setnewPassword, changeoldPassword, myProfile, editProfile
 }

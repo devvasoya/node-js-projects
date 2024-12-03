@@ -63,8 +63,8 @@
                     <span class="input-group-text bg-success text-white h-100" id="basic-addon1"><i
                         class="mdi mdi-account fs-4"></i></span>
                   </div>
-                  <input type="text" class="form-control form-control-lg" placeholder="Username" name="name"
-                    aria-label="Username" aria-describedby="basic-addon1"  value="<%=locals.user.name %>"/>
+                  <input type="text" class="form-control form-control-lg" value="<%=locals.user.name %>" placeholder="Username" name="name"
+                    aria-label="Username" aria-describedby="basic-addon1" />
                 </div>
                 <!-- email -->
                 <div class="input-group mb-3">
@@ -72,8 +72,8 @@
                     <span class="input-group-text bg-danger text-white h-100" id="basic-addon1"><i
                         class="mdi mdi-email fs-4"></i></span>
                   </div>
-                  <input type="text" class="form-control form-control-lg" placeholder="Email Address"
-                    aria-label="Username" aria-describedby="basic-addon1" required name="email" />
+                  <input type="text" class="form-control form-control-lg" disabled placeholder="Email Address"
+                    aria-label="Username" aria-describedby="basic-addon1" value="<%=locals.user.email %>" disabled required name="email" />
                 </div>
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
@@ -81,7 +81,7 @@
                         class="mdi mdi-lock fs-4"></i></span>
                   </div>
                   <input type="text" class="form-control form-control-lg" placeholder="Password" aria-label="Password"
-                    aria-describedby="basic-addon1" required name="password" />
+                    aria-describedby="basic-addon1" value="<%=locals.user.email %>" required name="password" />
                 </div>
 
               </div>

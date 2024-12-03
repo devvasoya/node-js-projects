@@ -24,6 +24,6 @@ routes.post('/changeoldpassword', changeoldPassword)
 // profile 
 
 routes.get('/myprofile',myProfile)
-routes.post('/editprofile',editProfile)
+routes.post('/editprofile',passport.checkuser,editProfile)
 
 module.exports = routes
