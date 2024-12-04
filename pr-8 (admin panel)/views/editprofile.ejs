@@ -56,6 +56,7 @@
           </div>
           <!-- Form -->
           <form class="form-horizontal mt-3" method="post" action="/edituserdata">
+            
             <div class="row pb-4">
               <div class="col-12">
                 <div class="input-group mb-3">
@@ -75,14 +76,7 @@
                   <input type="text" class="form-control form-control-lg" disabled placeholder="Email Address"
                     aria-label="Username" aria-describedby="basic-addon1" value="<%=locals.user.email %>" disabled required name="email" />
                 </div>
-                <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text bg-warning text-white h-100" id="basic-addon2"><i
-                        class="mdi mdi-lock fs-4"></i></span>
-                  </div>
-                  <input type="text" class="form-control form-control-lg" placeholder="Password" aria-label="Password"
-                    aria-describedby="basic-addon1" value="<%=locals.user.email %>" required name="password" />
-                </div>
+               
 
               </div>
             </div>

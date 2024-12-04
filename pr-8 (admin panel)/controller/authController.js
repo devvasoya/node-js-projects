@@ -146,8 +146,22 @@ const myProfile = (req,res) =>{
 const editProfile = (req,res) =>{
     return res.render('editprofile')
 }
-const edituserData = (req,res) =>{
-    console.log(req.body.name);
+const edituserData = async(req,res) =>{
+    try{
+        let useremail = res.locals.user.email;
+       const {name,email} = req.body
+       console.log(req.body);
+       
+       const up = await usermodel.findOneAndUpdate({email : useremail},{
+            name : name
+        })
+        // console.log(up);
+        
+        return res.redirect('/dashboard')
+    }catch(err){
+        console.log(err);
+        return false;
+    }
     
 }
 
