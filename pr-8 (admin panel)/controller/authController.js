@@ -155,8 +155,6 @@ const edituserData = async(req,res) =>{
        const up = await usermodel.findOneAndUpdate({email : useremail},{
             name : name
         })
-        // console.log(up);
-        
         return res.redirect('/dashboard')
     }catch(err){
         console.log(err);
