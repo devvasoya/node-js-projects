@@ -7,7 +7,7 @@
     <div class="page-breadcrumb">
       <div class="row">
         <div class="col-12 d-flex no-block align-items-center">
-          <h4 class="page-title">Form Basic</h4>
+          <h4 class="page-title">Tables</h4>
           <div class="ms-auto text-end">
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb">
@@ -18,7 +18,7 @@
               </ol>
             </nav>
           </div>
-        </div>  
+        </div>
       </div>
     </div>
     <!-- ============================================================== -->
@@ -32,43 +32,32 @@
       <!-- Start Page Content -->
       <!-- ============================================================== -->
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-12">
           <div class="card">
-            <form class="form-horizontal" method="post" action="/catagory/catagoriAddRecord">
-              <div class="card-body">
-                <h4 class="card-title">Add Category</h4>
-                <div class="form-group row">
-                  <label
-                    for="fname"
-                    class="col-sm-3 text-end control-label col-form-label"
-                    >First Name</label
-                  >
-                  <div class="col-sm-9">
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="fname"
-                      placeholder="First Name Here"
-                      name="catagori_name"
-                    />
-                  </div>
-                </div>
-                
-              <div class="border-top">
-                <div class="card-body">
-                  <button type="submit" class="btn btn-primary">
-                    Submit
-                  </button>
-                </div>
-              </div>
-            </form>
-          </div>
-         
+            <div class="card-body">
+              <h5 class="card-title mb-0">Static Table</h5>
+            </div>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">sr</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+               <tr>
+                <% viewuser.map((cat,i)=>{ %>
+                    <td><%= ++i %></td>
+                    <td><%= cat.catagori_name %></td>
+                    <td><button type="submit" class="btn btn-danger btn-sm rounded"><a href="/catagory/deletdata?id=<%= cat.id %>">Delete</a></button></td>
+               <% }) %>
+               </tr>
+              </tbody>
+            </table>
+          </div>          
         </div>
-      
       </div>
-      <!-- editor -->
-      
       <!-- ============================================================== -->
       <!-- End PAge Content -->
       <!-- ============================================================== -->
@@ -95,4 +84,4 @@
     <!-- ============================================================== -->
   </div>
 
-  <%-('footer')%>
+<%- include('footer')%>  
