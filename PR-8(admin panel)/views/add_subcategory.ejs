@@ -1,0 +1,110 @@
+<%- include('header')%>
+
+  <div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+      <div class="row">
+        <div class="col-12 d-flex no-block align-items-center">
+          <h4 class="page-title">Form Basic</h4>
+          <div class="ms-auto text-end">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  Library
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+      <!-- ============================================================== -->
+      <!-- Start Page Content -->
+      <!-- ============================================================== -->
+      <div class="row">
+        <% if(locals.massage.success) { %>
+          <div class="alert alert-success" role="alert">
+            <%= locals.massage.success %>
+          </div>
+        <% } %>
+
+
+
+            <div class="col-md-6">
+              <div class="card">
+                <form class="form-horizontal" method="post" action="/subcategory/insertsubcategory">
+                  <div class="card-body">
+                    <h4 class="card-title">Add Subcategory</h4>
+                    <div class="form-group row">
+                      <label for="fname" class="col-sm-3 text-end control-label col-form-label">Category</label>
+                      <div class="col-sm-9">
+                        <select name="category" class="form-control">
+                          <option>--select category--</option>
+                          <% category.map((ca)=>{ %>
+                            <option value="<%= ca.id %>"><%= ca.category_name %></option>
+                          <% }) %>
+                        </select>  
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <label for="fname" class="col-sm-3 text-end control-label col-form-label">Subcategory</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control" id="fname" name="subcategory"
+                          placeholder="Enter Subcategory Name" />
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="border-top">
+                    <div class="card-body">
+                      <button type="submit" class="btn btn-primary">
+                        Submit
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+            </div>
+
+      </div>
+      <!-- editor -->
+
+      <!-- ============================================================== -->
+      <!-- End PAge Content -->
+      <!-- ============================================================== -->
+      <!-- ============================================================== -->
+      <!-- Right sidebar -->
+      <!-- ============================================================== -->
+      <!-- .right-sidebar -->
+      <!-- ============================================================== -->
+      <!-- End Right sidebar -->
+      <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- footer -->
+    <!-- ============================================================== -->
+    <footer class="footer text-center">
+      All Rights Reserved by Matrix-admin. Designed and Developed by
+      <a href="https://www.wrappixel.com">WrapPixel</a>.
+    </footer>
+    <!-- ============================================================== -->
+    <!-- End footer -->
+    <!-- ============================================================== -->
+  </div>
+
+  <%- include('footer')%>

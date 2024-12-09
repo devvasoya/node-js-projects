@@ -1,0 +1,120 @@
+<%- include('header') %>
+
+  <div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+      <div class="row">
+        <div class="col-12 d-flex no-block align-items-center">
+          <h4 class="page-title">Tables</h4>
+          <div class="ms-auto text-end">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  Library
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+      <!-- ============================================================== -->
+      <!-- Start Page Content -->
+      <!-- ============================================================== -->
+      <div class="row">
+
+        <div class="row">
+          <% if(locals.massage.danger) { %>
+            <div class="alert alert-danger" role="alert">
+              <%= locals.massage.danger %>
+            </div>
+            <% } %>
+
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title mb-0">Static Table</h5>
+                  </div>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Category_No</th>
+                        <th scope="col">Category_Name</th>
+                        <th scope="col">Actions</th>
+                        <th scope="col">Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% categories.map((cat,i)=>{
+                        const {id,category_name}=cat;
+                        %>
+                        <tr>
+
+                          <td>
+                            <%= ++i %>
+                          </td>
+                          <td>
+                            <%= cat.category_name %>
+                          </td>
+
+                          <td>
+                            <a class="btn btn-danger me-2" href="/category/deletecategory?id=<%= cat.id %>">Delete</a>
+                            <a class="btn btn-info text-white" href="/category/editcategory?id=<%= cat.id %>">Edit</a>
+                          </td>
+
+                          <td>
+                            <% if(cat.status == "active" ) { %>
+                              <a href="/category/changestatus?id=<%= cat.id %>&status=<%= cat.status %>" class="btn btn-success">
+                                <%= cat.status %>
+                              </a>
+                              <% } else { %>
+                                <a href="/category/changestatus?id=<%= cat.id %>&status=<%= cat.status %>" class="btn btn-warning">
+                                  <%= cat.status %>
+                                </a>
+                                <% } %>
+                          </td>
+                          
+                        </tr>
+                        <% }) %>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End PAge Content -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right sidebar -->
+        <!-- ============================================================== -->
+        <!-- .right-sidebar -->
+        <!-- ============================================================== -->
+        <!-- End Right sidebar -->
+        <!-- ============================================================== -->
+      </div>
+      <!-- ============================================================== -->
+      <!-- End Container fluid  -->
+      <!-- ============================================================== -->
+      <!-- ============================================================== -->
+      <!-- footer -->
+      <!-- ============================================================== -->
+      <footer class="footer text-center">
+        All Rights Reserved by Matrix-admin. Designed and Developed by
+        <a href="https://www.wrappixel.com">WrapPixel</a>.
+      </footer>
+      <!-- ============================================================== -->
+      <!-- End footer -->
+      <!-- ============================================================== -->
+    </div>
+
+    <%- include('footer') %>
