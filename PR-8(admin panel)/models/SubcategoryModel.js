@@ -11,7 +11,7 @@ const subcatSchema = mongoose.Schema({
     },
     status: {
         type: String,
-        default: "deactive"
+        default: "active"
     }
 })
 const subcategory = mongoose.model('subcategory', subcatSchema);

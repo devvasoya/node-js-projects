@@ -8,4 +8,4 @@ routes.use('/subcategory',require('./SubcategoryRoute'));
 routes.use('/exsubcategory',require('./ExsubcategoryRoute'));
 
 
-module.exports = routes;
+module.exports = routes; 

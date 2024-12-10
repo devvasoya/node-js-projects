@@ -1,12 +1,11 @@
 const CategoryModel = require('../models/CategoryModel');
 const subcategoryModel = require('../models/SubcategoryModel');
 const ExsubcategoryModel = require('../models/ExsubcategoryModel');
-const subcategory = require('../models/SubcategoryModel');
-const exsubcategory = require('../models/ExsubcategoryModel');
 
 const viewExsubcategorypage = async (req, res) => {
     try {
-        let exscategory = await ExsubcategoryModel.find({}).populate("categoryId").populate("subcategoryId");
+        let exscategory = await ExsubcategoryModel.find({}).populate('categoryId').populate('subcategoryId');
+        console.log(exscategory)
         return res.render('view_exsubcategory', {
             exscategory
         })
@@ -20,6 +19,7 @@ const addExsubcategorypage = async (req, res) => {
     try {
         let category = await CategoryModel.find({});
         let subcategory = await subcategoryModel.find({});
+      
         return res.render('add_exsubcategory', {
             category,
             subcategory
@@ -32,13 +32,17 @@ const addExsubcategorypage = async (req, res) => {
 
 const insertExsubcategory = async (req, res) => {
     try {
+        console.log("done");
+        
         const { category, subcategory, exsubcategory } = req.body;
+        console.log(req.body);
+        
         await ExsubcategoryModel.create({
             categoryId: category,
-            subcategoryId: subcategory,
+            subcategoryId : subcategory,
             exsubcategory: exsubcategory
         })
-        return res.redirect('/exsubcategory');
+        return res.redirect('/exsubcategory/exaddsubcategory');
     } catch (err) {
         console.log(err);
         return false;
@@ -71,7 +75,7 @@ const deleteExsubcategory = async (req, res) => {
     } catch (err) {
         console.log(err);
         return false;
-    }
+    } 
 }
 
 const updateExsubcategory = async (req, res) => {

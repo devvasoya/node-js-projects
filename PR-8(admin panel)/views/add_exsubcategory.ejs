@@ -64,9 +64,7 @@
                       <div class="col-sm-9">
                         <select id="subcategory" name="subcategory" class="form-control">
                           <option>--select subcategory--</option>
-                          <!-- <% subcategory.map((scat)=>{ %>
-                              <option value="<%= scat.id %>"><%= scat.subcategory %></option>
-                            <% }) %> -->
+                        
                         </select>
                       </div>
                     </div>
@@ -120,7 +118,7 @@
     <!-- End footer -->
     <!-- ============================================================== -->
   </div>
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
   <script>
     const categoryRecord = (req, res) => {
@@ -133,8 +131,10 @@
           let category = res.category
           tbl += `<option value="">--selset--opation</option>`
           category.map((subcat) => {
+            console.log(subcat);
+            
             tbl += `
-              <option >${subcat.subcategory}</option>  
+              <option value=${subcat._id}>${subcat.subcategory}</option>  
             `
           })
           document.getElementById('subcategory').innerHTML = tbl;

@@ -6,7 +6,7 @@ const exsubcatSchema = mongoose.Schema({
         ref: "category"
     },
     subcategoryId: {
-        type:  mongoose.Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: "subcategory"
     },
     exsubcategory: {
@@ -15,7 +15,7 @@ const exsubcatSchema = mongoose.Schema({
     },
     status: {
         type: String,
-        default: "deactive"
+        default: "active"
     }
 })
 const exsubcategory = mongoose.model('exsubcategory', exsubcatSchema);

@@ -7,7 +7,7 @@ const catSchema = mongoose.Schema({
     },
     status:{
         type:String,
-        default:"deactive"
+        default:"active"
     }
 })
 const category = mongoose.model('category', catSchema);
