@@ -77,7 +77,7 @@ const deleteExsubcategory = async (req, res) => {
 const updateExsubcategory = async (req, res) => {
     try {
         const { editid, category, subcategory, exsubcategory } = req.body;
-        
+
         await ExsubcategoryModel.findByIdAndUpdate(editid, {
             categoryId: category,
             subcategory: subcategory,
@@ -114,6 +114,31 @@ const changeStatus = async (req, res) => {
     }
 }
 
+const ajexsubcategory = async (req, res) => {
+    try {
+        const id = req.query.id;
+
+        // Ensure to use await for asynchronous operation
+        const category = await subcategoryModel.find({ categoryId: id });
+
+        console.log(category);
+
+        return res.send({
+            success: true,
+            message: "avi gayu bhai",
+            category,
+        });
+    } catch (error) {
+        console.error("Error fetching subcategories:", error);
+        return res.status(500).send({
+            success: false,
+            message: "An error occurred while fetching subcategories",
+            error: error.message,
+        });
+    }
+};
+
+
 module.exports = {
-    viewExsubcategorypage, addExsubcategorypage, insertExsubcategory, deleteExsubcategory, editExsubcategory, updateExsubcategory,changeStatus
+    viewExsubcategorypage, addExsubcategorypage, insertExsubcategory, deleteExsubcategory, editExsubcategory, updateExsubcategory, changeStatus, ajexsubcategory
 }

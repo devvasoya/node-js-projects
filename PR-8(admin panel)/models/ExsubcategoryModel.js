@@ -6,7 +6,7 @@ const exsubcatSchema = mongoose.Schema({
         ref: "category"
     },
     subcategoryId: {
-        type: String,
+        type:  mongoose.Schema.Types.ObjectId,
         ref: "subcategory"
     },
     exsubcategory: {
