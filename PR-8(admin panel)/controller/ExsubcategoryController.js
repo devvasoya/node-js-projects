@@ -42,7 +42,7 @@ const insertExsubcategory = async (req, res) => {
             subcategoryId : subcategory,
             exsubcategory: exsubcategory
         })
-        return res.redirect('/exsubcategory/exaddsubcategory');
+        return res.redirect('/exsubcategory');
     } catch (err) {
         console.log(err);
         return false;
@@ -141,6 +141,7 @@ const ajexsubcategory = async (req, res) => {
         });
     }
 };
+
 
 
 module.exports = {
