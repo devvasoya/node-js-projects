@@ -1,0 +1,170 @@
+<%- include('header')%>
+
+  <div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+      <div class="row">
+        <div class="col-12 d-flex no-block align-items-center">
+          <h4 class="page-title">Form Basic</h4>
+          <div class="ms-auto text-end">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  Library
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+      <!-- ============================================================== -->
+      <!-- Start Page Content -->
+      <!-- ============================================================== -->
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card">
+            <form class="form-horizontal" method="post" action="/exsubcategory/insertexsubcategory">
+              <div class="card-body">
+                <h4 class="card-title">Add Exsubcategory</h4>
+                <div class="form-group row">
+                  <label for="fname" class="col-sm-3 text-end control-label col-form-label">Category</label>
+                  <div class="col-sm-9">
+                    <select onchange="categoryRecord()" id="category" name="category" class="form-control">
+                      <option>--select category--</option>
+                      <% category.map((ca)=>{ %>
+                        <option value="<%= ca.id %>">
+                          <%= ca.category_name %>
+                        </option>
+                        <% }) %>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="fname" class="col-sm-3 text-end control-label col-form-label">Subcategory</label>
+                  <div class="col-sm-9">
+                    <select onchange="exsubcatagoryRecord()" id="subcategory" name="subcategory" class="form-control">
+                      <option>--select subcategory--</option>
+
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="fname" class="col-sm-3 text-end control-label col-form-label">Exsubcategory</label>
+                  <div class="col-sm-9">
+                    <select id="exsubcategory" name="exsubcategory" class="form-control">
+                      <option>--select Exsubcategory--</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="fname" class="col-sm-3 text-end control-label col-form-label">Producat Name</label>
+                  <div class="col-sm-9">
+                    <input type="text" id="exsubcategoryname" name="producatname" class="form-control" placeholder="Add Producat Name"/>
+                  </div>
+                </div>
+
+              </div>
+              <div class="border-top">
+                <div class="card-body">
+                  <button type="submit" class="btn btn-primary">
+                    Submit
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+      <!-- editor -->
+
+      <!-- ============================================================== -->
+      <!-- End PAge Content -->
+      <!-- ============================================================== -->
+      <!-- ============================================================== -->
+      <!-- Right sidebar -->
+      <!-- ============================================================== -->
+      <!-- .right-sidebar -->
+      <!-- ============================================================== -->
+      <!-- End Right sidebar -->
+      <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- footer -->
+    <!-- ============================================================== -->
+    <footer class="footer text-center">
+      All Rights Reserved by Matrix-admin. Designed and Developed by
+      <a href="https://www.wrappixel.com">WrapPixel</a>.
+    </footer>
+    <!-- ============================================================== -->
+    <!-- End footer -->
+    <!-- ============================================================== -->
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+  <script>
+    const categoryRecord = (req, res) => {
+      let catagory = document.getElementById('category').value
+      $.ajax({
+        type: 'GET',
+        url: `/exsubcategory/ajexsubcategory?id=${catagory}`,
+        success: function (res) {
+          let tbl = ""
+          let category = res.category
+          tbl += `<option value="">--selset--opation</option>`
+          category.map((subcat) => {
+            console.log(subcat);
+
+            tbl += `
+              <option value=${subcat._id}>${subcat.subcategory}</option>  
+            `
+          })
+          document.getElementById('subcategory').innerHTML = tbl;
+
+        }
+
+      })
+    }
+
+
+    const exsubcatagoryRecord = () => {
+      let subcatagory = document.getElementById('subcategory').value
+      $.ajax({
+        type: 'GET',
+        url: `/product/exsubcategryajex?id=${subcatagory}`,
+        success: function (res) {
+          let subcatagory = res.subcategory
+          console.log(subcatagory);
+
+          let tbl = ""
+          tbl += `<option value="">--selset--opation</option>`
+          subcatagory.map((subcat) => {
+            tbl += `
+              <option value=${subcat._id}>${subcat.exsubcategory}</option>  
+            `
+          })
+          document.getElementById('exsubcategory').innerHTML = tbl;
+        }
+      })
+    }
+  </script>
+
+  <%- include('footer')%>
