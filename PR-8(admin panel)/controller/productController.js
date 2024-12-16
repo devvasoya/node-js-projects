@@ -2,6 +2,8 @@ const categoryModel = require("../models/CategoryModel");
 const subcategoryModel = require('../models/SubcategoryModel')
 const exsubcategoryModel = require('../models/ExsubcategoryModel')
 const producatmodel = require('../models/productModel')
+const path = require('path')
+const fs = require('fs')
 
 const producatpage = async (req, res) => {
     try {
@@ -37,15 +39,16 @@ const viewproduct = async (req, res) => {
 const insertproduct = async (req, res) => {
     try {
         const { category, subcategory, exsubcategory, description, price } = req.body
-
+        console.log(req.file.path);
         const user = await producatmodel.create({
             categoryId: category,
             subcategoryId: subcategory,
             exsubcategoryId: exsubcategory,
             description: description,
-            price: price
+            price: price,
+            image : req.file.path
         })
-        console.log(user);
+        
 
         return res.redirect('/product/viewproduct')
     } catch (err) {
@@ -58,8 +61,28 @@ const insertproduct = async (req, res) => {
 const deleteproduct = async (req, res) => {
     try {
         let id = req.query.id;
+        const singel = await producatmodel.findById(id)
+        fs.unlinkSync(singel.image)
         await producatmodel.findByIdAndDelete(id);
         return res.redirect('back');
+    } catch (err) {
+        console.log(err);
+        return false;
+    }
+}
+
+const updateproduct = async(req,res) =>{
+    try {
+        const { editid, category, subcategory, exsubcategory,description,price } = req.body;
+
+        await producatmodel.findByIdAndUpdate(editid, {
+            categoryId: category,
+            subcategoryId: subcategory,
+            exsubcategoryId: exsubcategory,
+            description: description,
+            price:price,
+        })
+        return res.redirect('/product/editexproduct')
     } catch (err) {
         console.log(err);
         return false;
@@ -73,7 +96,9 @@ const editexproduct = async (req, res) => {
             let category = await categoryModel.find({});
             let subcategory = await subcategoryModel.find({});
             let exsubcategory = await exsubcategoryModel.find({});
-            let single = await exsubcategoryModel.findById(id).populate("categoryId").populate("subcategoryId").populate('exsubcategoryId')
+            let single = await producatmodel.findById(id).populate("categoryId").populate("subcategoryId").populate('exsubcategoryId')
+            console.log(single);
+            
             return res.render('editProduct', {
                 category,
                 subcategory,
@@ -107,5 +132,5 @@ const exsubcategryajex = async (req, res) => {
 }
 
 module.exports = {
-    producatpage, exsubcategryajex, viewproduct, insertproduct, deleteproduct, editexproduct
+    producatpage, exsubcategryajex, viewproduct, insertproduct, deleteproduct, editexproduct,updateproduct
 }

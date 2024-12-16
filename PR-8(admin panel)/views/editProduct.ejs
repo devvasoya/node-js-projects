@@ -42,7 +42,7 @@
 
             <div class="col-md-6">
               <div class="card">
-                <form class="form-horizontal" method="post" action="/exsubcategory/updateexsubcategory">
+                <form class="form-horizontal" method="post" action="/product/updateproduct">
                   <div class="card-body">
                     <h4 class="card-title">Edit Exsubcategory</h4>
                     <div class="form-group row">
@@ -57,17 +57,18 @@
                       </div>
                     </div>   
 
+                    
                     <div class="form-group row">
-                        <label for="fname" class="col-sm-3 text-end control-label col-form-label">Subcategory</label>
-                        <div class="col-sm-9">
-                          <select name="subcategory" class="form-control">
-                            <option>--select subcategory--</option>
-                            <% subcategory.map((scat)=>{ %>
-                              <option value="<%= scat.id %>"<% if(single.subcategoryId.subcategory == scat.subcategory) { %> selected <% } %> value="<%= scat.id %>"><%= scat.subcategory%></option>
-                            <% }) %>
-                          </select>   
-                        </div>
+                      <label for="fname" class="col-sm-3 text-end control-label col-form-label">Subcategory</label>
+                      <div class="col-sm-9">
+                        <select name="subcategory" class="form-control">
+                          <option>--select subcategory--</option>
+                          <% subcategory.map((scat)=>{ %>
+                            <option value="<%= scat.id %>"<% if(single.subcategoryId.subcategory == scat.subcategory) { %> selected <% } %> value="<%= scat.id %>"><%= scat.subcategory%></option>
+                          <% }) %>
+                        </select>   
                       </div>
+                    </div>
 
                     <div class="form-group row">
                       <label for="fname" class="col-sm-3 text-end control-label col-form-label">Exsubcategory</label>
