@@ -48,8 +48,6 @@ const insertproduct = async (req, res) => {
             price: price,
             image : req.file.path
         })
-        
-
         return res.redirect('/product/viewproduct')
     } catch (err) {
         console.log(err)

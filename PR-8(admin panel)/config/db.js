@@ -1,16 +1,13 @@
 const mongoose = require('mongoose')
 
-mongoose.connect('mongodb://localhost/adminUsingMailer')
-
-
-const database = mongoose.connection
-
-
-database.on('connected', (err) => {
-    if (err) {
-        console.log(err);
+const connectDB = async () => {
+    try{
+        await mongoose.connect(`mongodb+srv://Devvasoya:devvasoya1234@cluster0.xz8ir.mongodb.net/adminpanel`)
+        console.log('MongoDB Connected')
+    }catch(err){
+        console.error(err);
+        return false
     }
-    console.log('db is connected');
-})
+}
 
-module.exports = database
+module.exports = connectDB();
