@@ -16,6 +16,8 @@ app.use(cookieParser());
 const flash = require('connect-flash')
 
 app.use('/', express.static(path.join(__dirname, '/public')))
+app.use('/', express.static(path.join(__dirname, '/upload')))
+
 
 //passport
 const passport = require('passport');

@@ -1,15 +1,16 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
-mongoose.connect(`mongodb://localhost/admin-panel`);
+mongoose.connect('mongodb://localhost/adminUsingMailer')
 
-const db = mongoose.connection;
 
-db.on("connected", (err) => {
+const database = mongoose.connection
+
+
+database.on('connected', (err) => {
     if (err) {
         console.log(err);
-        return false;
     }
-    console.log(`DB connected`);
+    console.log('db is connected');
 })
 
-module.exports = db;
+module.exports = database

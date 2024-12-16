@@ -5,7 +5,6 @@ const ExsubcategoryModel = require('../models/ExsubcategoryModel');
 const viewExsubcategorypage = async (req, res) => {
     try {
         let exscategory = await ExsubcategoryModel.find({}).populate('categoryId').populate('subcategoryId');
-        console.log(exscategory)
         return res.render('view_exsubcategory', {
             exscategory
         })
@@ -32,7 +31,6 @@ const addExsubcategorypage = async (req, res) => {
 
 const insertExsubcategory = async (req, res) => {
     try {
-        console.log("done");
         
         const { category, subcategory, exsubcategory } = req.body;
         console.log(req.body);

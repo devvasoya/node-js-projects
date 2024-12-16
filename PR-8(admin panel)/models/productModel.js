@@ -9,13 +9,17 @@ const productSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "subcategory"
     },
-    exsubcategory: {
+    exsubcategoryId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "exsubcategory"
     },
-    product:{
-        type : String,
-        require : true
+    description: {
+        type: String,
+        required: true
+    },
+    price: {
+        type: String,
+        required: true
     },
     status: {
         type: String,
