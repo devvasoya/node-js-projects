@@ -56,18 +56,18 @@ const forgotPassword = async (req, res) => {
         var transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: 'jensijodhani2043@gmail.com',
-                pass: 'vycc eihx dyhm osqr'
+                user: 'devvasoya425@gmail.com',
+                pass: 'aylmoekkuyedlung'
             }
         });
 
         var mailOptions = {
-            from: 'jensijodhani2043@gmail.com',
+            from: 'devvasoya425@gmail.com',
             to: useremail,
             subject: 'Sending Email using Node.js',
             html: `
                 <h1>Forgot password</h1>
-                <h2>Company name :- rudra infotech</h2>
+                <h2>Company name :- DK infotech</h2>
                 <h3 style="color:green">Hello ${user.name} Your Otp :- ${otp}</h3>
                 <h3>Thank you</h3>
 
@@ -84,7 +84,7 @@ const forgotPassword = async (req, res) => {
                     email: useremail
                 }
                 res.cookie('otp', obj);
-                return res.redirect('/otp');
+                return res.render('otp');
             }
         });
 
@@ -105,7 +105,7 @@ const postOtp = async (req, res) => {
         let otp = req.body.otp;
         let userotp = req.cookies.otp.otp;
         if (userotp == otp) {
-            return res.redirect('/newpass')
+            return res.render('newpassword')
         } else {
             return res.redirect('/otp')
         }

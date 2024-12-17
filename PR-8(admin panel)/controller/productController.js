@@ -68,46 +68,6 @@ const deleteproduct = async (req, res) => {
         return false;
     }
 }
-
-const updateproduct = async (req, res) => {
-    try {
-        const { editid, category, subcategory, exsubcategory, description, price } = req.body;
-        console.log(req.file);
-
-        if (req.file) {
-            const single = await producatmodel.findById(editid)
-            fs.unlinkSync(single.image)
-            await producatmodel.findByIdAndUpdate(editid, {
-                categoryId: category,
-                subcategoryId: subcategory,
-                exsubcategoryId: exsubcategory,
-                description: description,
-                price: price,
-                image: req.file.path,
-            })
-
-            return res.redirect('/viewproduct')
-        } else {
-            const single = await producatmodel.findById(editid)
-
-            const up = await producatmodel.findByIdAndUpdate(editid, {
-                categoryId: category,
-                subcategoryId: subcategory,
-                exsubcategoryId: exsubcategory,
-                description: description,
-                price: price,
-                image: single.image
-            })
-            console.log(up);
-            return res.redirect('/viewproduct')
-        }
-
-    } catch (error) {
-        console.log(error);
-        return false;
-    }
-}
-
 const editexproduct = async (req, res) => {
 
     try {
@@ -129,6 +89,47 @@ const editexproduct = async (req, res) => {
         return false;
     }
 }
+
+const updateproduct = async (req, res) => {
+    try {
+        const { id, category, subcategory, exsubcategory, description, price } = req.body;
+        console.log(req.file);
+
+        if (req.file) {
+            const single = await producatmodel.findById(id)
+            fs.unlinkSync(single.image)
+            await producatmodel.findByIdAndUpdate(editid, {
+                categoryId: category,
+                subcategoryId: subcategory,
+                exsubcategoryId: exsubcategory,
+                description: description,
+                price: price,
+                image: req.file.path,
+            })
+
+            return res.redirect('/viewproduct')
+        } else {
+            const single = await producatmodel.findById(id)
+
+            const up = await producatmodel.findByIdAndUpdate(id, {
+                categoryId: category,
+                subcategoryId: subcategory,
+                exsubcategoryId: exsubcategory,
+                description: description,
+                price: price,
+                image: single.image
+            })
+            console.log(up);
+            return res.redirect('/viewproduct')
+        }
+
+    } catch (error) {
+        console.log(error);
+        return false;
+    }
+}
+
+
 
 
 const changestatus = async (req, res) => {
