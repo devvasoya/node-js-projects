@@ -40,7 +40,7 @@
               <div class="card">
                 <form class="form-horizontal" method="post" enctype="multipart/form-data" action="/product/updateproduct">
                   <div class="card-body">
-                    <input type="text" name="id" value="<%= single.id %>">
+                    <input type="hidden" name="id" value="<%= single.id %>">
                     <h4 class="card-title">Edit Exsubcategory</h4>
                     <div class="form-group row">
                       <label for="fname" class="col-sm-3 text-end control-label col-form-label">Category</label>

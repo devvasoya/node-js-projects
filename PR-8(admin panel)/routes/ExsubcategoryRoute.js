@@ -9,7 +9,7 @@ routes.get('/',passport.checkUser,viewExsubcategorypage);
 routes.get('/exaddsubcategory',passport.checkUser,addExsubcategorypage);
 routes.post('/insertexsubcategory',insertExsubcategory);
 routes.get('/deleteexsubcategory',deleteExsubcategory);
-routes.get('/editexsubcategory',editExsubcategory);
+routes.get('/editexsubcategory',passport.checkUser,editExsubcategory);
 routes.post('/updateexsubcategory',updateExsubcategory);
 routes.get('/changestatus',changeStatus)
 routes.get('/ajexsubcategory',ajexsubcategory)

@@ -39,7 +39,7 @@ const viewproduct = async (req, res) => {
 const insertproduct = async (req, res) => {
     try {
         const { category, subcategory, exsubcategory, description, price } = req.body
-        // console.log(req.file.path);
+       
         const user = await producatmodel.create({
             categoryId: category,
             subcategoryId: subcategory,
@@ -109,7 +109,6 @@ const updateproduct = async (req, res) => {
             return res.redirect('/product/viewproduct')
         } else {
             const single = await producatmodel.findById(id)
-            // console.log(single); undefined
             
             const up = await producatmodel.findByIdAndUpdate(id, {
                 categoryId: category,

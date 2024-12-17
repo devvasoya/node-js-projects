@@ -4,9 +4,9 @@ const nodemailer = require('nodemailer');
 
 // login
 const loginPage = (req, res) => {
-    if (res.locals.users) {
-        return res.redirect('dashboard')
-    }
+    if (res.locals.user) {
+        return res.redirect("dashboard");
+      }
     return res.render('login')
 }
 const loginUser = (req, res) => {
@@ -16,6 +16,11 @@ const dashboardPage = (req, res) => {
     return res.render('dashboard')
 }
 const registerPage = (req, res) => {
+    console.log(res.locals.user);
+    
+    if (res.locals.users) {
+        return res.redirect("dashboard");
+      }
     return res.render('register');
 }
 const registerUser = async (req, res) => {

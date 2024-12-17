@@ -16,13 +16,14 @@ const st = multer.diskStorage({
   })
   
 const upload = multer({ storage: st }).single('image')
+const passport = require('passport')
 
-routes.get('/productpage',producatpage)
+routes.get('/productpage',passport.checkUser,producatpage)
 routes.get('/exsubcategryajex',exsubcategryajex)
-routes.get('/viewproduct',viewproduct)
+routes.get('/viewproduct',passport.checkUser,viewproduct)
 routes.post('/insertproduct',upload,insertproduct)
 routes.get('/deleteproduct',deleteproduct)
-routes.get('/editexproduct',editexproduct)
+routes.get('/editexproduct',passport.checkUser,editexproduct)
 routes.post('/updateproduct',upload,updateproduct)
 routes.get('/changestatus',changestatus)
 

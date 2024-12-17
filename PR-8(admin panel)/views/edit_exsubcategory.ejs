@@ -43,12 +43,13 @@
             <div class="col-md-6">
               <div class="card">
                 <form class="form-horizontal" method="post" action="/exsubcategory/updateexsubcategory">
+                  <input type="hidden" name="editid" value="<%= single.id %>">
                   <div class="card-body">
                     <h4 class="card-title">Edit Exsubcategory</h4>
                     <div class="form-group row">
                       <label for="fname" class="col-sm-3 text-end control-label col-form-label">Category</label>
                       <div class="col-sm-9">
-                        <select name="subcategory" class="form-control">
+                        <select name="category" class="form-control">
                           <option>--select subcategory--</option>
                           <% category.map((scat)=>{ %>
                             <option value="<%= scat.id %>"<% if(single.categoryId.category_name == scat.category_name) { %> selected <% } %> value="<%= scat.id %>"><%= scat.category_name %></option>

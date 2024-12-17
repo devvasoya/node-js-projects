@@ -53,6 +53,8 @@ const editExsubcategory = async (req, res) => {
         let category = await CategoryModel.find({});
         let subcategory = await subcategoryModel.find({});
         let single = await ExsubcategoryModel.findById(id).populate("categoryId").populate("subcategoryId")
+        console.log(single);
+        
         return res.render('edit_exsubcategory', {
             category,
             subcategory,
@@ -80,9 +82,17 @@ const updateExsubcategory = async (req, res) => {
     try {
         const { editid, category, subcategory, exsubcategory } = req.body;
 
+        // console.log(editid);
+        // console.log(category);
+        // console.log(subcategory);
+        // console.log(exsubcategory);
+        // console.log(req.body);
+
+        // await ExsubcategoryModel.findById(editid)
+        
         await ExsubcategoryModel.findByIdAndUpdate(editid, {
             categoryId: category,
-            subcategory: subcategory,
+            subcategoryId: subcategory,
             exsubcategory: exsubcategory
         })
         return res.redirect('/exsubcategory')
