@@ -22,7 +22,7 @@ const producatpage = async (req, res) => {
 const viewproduct = async (req, res) => {
     try {
         const product = await producatmodel.find({}).populate('categoryId').populate('subcategoryId').populate('exsubcategoryId')
-        console.log(product);
+        // console.log(product);
 
         return res.render('viewproduct', {
             product
@@ -39,7 +39,7 @@ const viewproduct = async (req, res) => {
 const insertproduct = async (req, res) => {
     try {
         const { category, subcategory, exsubcategory, description, price } = req.body
-        console.log(req.file.path);
+        // console.log(req.file.path);
         const user = await producatmodel.create({
             categoryId: category,
             subcategoryId: subcategory,
@@ -76,7 +76,7 @@ const editexproduct = async (req, res) => {
         let subcategory = await subcategoryModel.find({});
         let exsubcategory = await exsubcategoryModel.find({});
         let single = await producatmodel.findById(id).populate("categoryId").populate("subcategoryId").populate('exsubcategoryId')
-        console.log(single);
+      
 
         return res.render('editProduct', {
             category,
@@ -93,24 +93,24 @@ const editexproduct = async (req, res) => {
 const updateproduct = async (req, res) => {
     try {
         const { id, category, subcategory, exsubcategory, description, price } = req.body;
-        console.log(req.file);
-
+        
         if (req.file) {
             const single = await producatmodel.findById(id)
             fs.unlinkSync(single.image)
-            await producatmodel.findByIdAndUpdate(editid, {
+            await producatmodel.findByIdAndUpdate(id, {
                 categoryId: category,
                 subcategoryId: subcategory,
                 exsubcategoryId: exsubcategory,
                 description: description,
                 price: price,
-                image: req.file.path,
+                image: req.file.path
             })
 
-            return res.redirect('/viewproduct')
+            return res.redirect('/product/viewproduct')
         } else {
             const single = await producatmodel.findById(id)
-
+            // console.log(single); undefined
+            
             const up = await producatmodel.findByIdAndUpdate(id, {
                 categoryId: category,
                 subcategoryId: subcategory,
@@ -119,8 +119,8 @@ const updateproduct = async (req, res) => {
                 price: price,
                 image: single.image
             })
-            console.log(up);
-            return res.redirect('/viewproduct')
+            console.log(up); null 
+            return res.redirect('/product/viewproduct')
         }
 
     } catch (error) {
