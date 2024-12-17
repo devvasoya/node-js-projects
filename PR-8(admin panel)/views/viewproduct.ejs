@@ -73,7 +73,7 @@
                             <%= pr.price %>
                           </td>
                           <td>
-                            <img src="/<%= pr.image %>" width="100" />
+                            <img src="/<%= pr.image %>"  width="100" />
                           </td>
                           <td>
                             <a class="btn btn-danger me-2" href="/product/deleteproduct?id=<%= pr.id %>">Delete</a>
@@ -81,11 +81,11 @@
                           </td>
                           <td>
                             <% if(pr.status == "active" ) { %>
-                              <a href="/exsubcategory/changestatus?id=<%= pr.id %>&status=<%= pr.status %>" class="btn btn-success">
+                              <a href="/product/changestatus?id=<%= pr.id %>&status=<%= pr.status %>" class="btn btn-success">
                                 <%= pr.status %>
                               </a>
                               <% } else { %>
-                                <a href="/exsubcategory/changestatus?id=<%= pr.id %>&status=<%= pr.status %>" class="btn btn-warning">
+                                <a href="/product/changestatus?id=<%= pr.id %>&status=<%= pr.status %>" class="btn btn-warning">
                                   <%= pr.status %>
                                 </a>
                                 <% } %>

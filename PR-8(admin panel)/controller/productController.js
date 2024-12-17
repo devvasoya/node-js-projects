@@ -46,7 +46,7 @@ const insertproduct = async (req, res) => {
             exsubcategoryId: exsubcategory,
             description: description,
             price: price,
-            image : req.file.path
+            image: req.file.path
         })
         return res.redirect('/product/viewproduct')
     } catch (err) {
@@ -69,46 +69,91 @@ const deleteproduct = async (req, res) => {
     }
 }
 
-const updateproduct = async(req,res) =>{
+const updateproduct = async (req, res) => {
     try {
-        const { editid, category, subcategory, exsubcategory,description,price } = req.body;
+        const { editid, category, subcategory, exsubcategory, description, price } = req.body;
+        console.log(req.file);
 
-        await producatmodel.findByIdAndUpdate(editid, {
-            categoryId: category,
-            subcategoryId: subcategory,
-            exsubcategoryId: exsubcategory,
-            description: description,
-            price:price,
+        if (req.file) {
+            const single = await producatmodel.findById(editid)
+            fs.unlinkSync(single.image)
+            await producatmodel.findByIdAndUpdate(editid, {
+                categoryId: category,
+                subcategoryId: subcategory,
+                exsubcategoryId: exsubcategory,
+                description: description,
+                price: price,
+                image: req.file.path,
+            })
+
+            return res.redirect('/viewproduct')
+        } else {
+            const single = await producatmodel.findById(editid)
+
+            const up = await producatmodel.findByIdAndUpdate(editid, {
+                categoryId: category,
+                subcategoryId: subcategory,
+                exsubcategoryId: exsubcategory,
+                description: description,
+                price: price,
+                image: single.image
+            })
+            console.log(up);
+            return res.redirect('/viewproduct')
+        }
+
+    } catch (error) {
+        console.log(error);
+        return false;
+    }
+}
+
+const editexproduct = async (req, res) => {
+
+    try {
+        let id = req.query.id
+        let category = await categoryModel.find({});
+        let subcategory = await subcategoryModel.find({});
+        let exsubcategory = await exsubcategoryModel.find({});
+        let single = await producatmodel.findById(id).populate("categoryId").populate("subcategoryId").populate('exsubcategoryId')
+        console.log(single);
+
+        return res.render('editProduct', {
+            category,
+            subcategory,
+            exsubcategory,
+            single
         })
-        return res.redirect('/product/editexproduct')
     } catch (err) {
         console.log(err);
         return false;
     }
 }
 
-const editexproduct = async (req, res) => {
-    
-        try {
-            let id = req.query.id
-            let category = await categoryModel.find({});
-            let subcategory = await subcategoryModel.find({});
-            let exsubcategory = await exsubcategoryModel.find({});
-            let single = await producatmodel.findById(id).populate("categoryId").populate("subcategoryId").populate('exsubcategoryId')
-            console.log(single);
-            
-            return res.render('editProduct', {
-                category,
-                subcategory,
-                exsubcategory,
-                single
+
+const changestatus = async (req, res) => {
+    try {
+        let id = req.query.id;
+        let st = req.query.status;
+
+        if (st == "active") {
+            await producatmodel.findByIdAndUpdate(id, {
+                status: "deactive"
             })
-        } catch (err) {
-            console.log(err);
-            return false;
+            return res.redirect('/product/viewproduct')
+        } else {
+            await producatmodel.findByIdAndUpdate(id, {
+                status: "active"
+            })
+            return res.redirect('/product/viewproduct')
         }
-    
+    } catch (err) {
+        console.log(err);
+        return false;
+    }
 }
+
+
 const exsubcategryajex = async (req, res) => {
     try {
         const id = req.query.id;
@@ -130,5 +175,5 @@ const exsubcategryajex = async (req, res) => {
 }
 
 module.exports = {
-    producatpage, exsubcategryajex, viewproduct, insertproduct, deleteproduct, editexproduct,updateproduct
+    producatpage, exsubcategryajex, viewproduct, insertproduct, deleteproduct, editexproduct, updateproduct, changestatus
 }

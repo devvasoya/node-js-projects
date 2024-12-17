@@ -42,7 +42,7 @@
 
             <div class="col-md-6">
               <div class="card">
-                <form class="form-horizontal" method="post" action="/product/updateproduct">
+                <form class="form-horizontal" method="post" enctype="multipart/form-data" action="/product/updateproduct">
                   <div class="card-body">
                     <h4 class="card-title">Edit Exsubcategory</h4>
                     <div class="form-group row">
@@ -69,12 +69,38 @@
                         </select>   
                       </div>
                     </div>
+                    <div class="form-group row">
+                      <label for="fname" class="col-sm-3 text-end control-label col-form-label">exSubcategory</label>
+                      <div class="col-sm-9">
+                        <select name="subcategory" class="form-control">
+                          <option>--select exsubcategory--</option>
+                          <% exsubcategory.map((scat)=>{ %>
+                            <option value="<%= scat.id %>"<% if(single.exsubcategoryId.exsubcategory == scat.exsubcategory) { %> selected <% } %> value="<%= scat.id %>"><%= scat.exsubcategory %></option>
+                          <% }) %>
+                        </select>   
+                      </div>
+                    </div>
 
                     <div class="form-group row">
-                      <label for="fname" class="col-sm-3 text-end control-label col-form-label">Exsubcategory</label>
+                      <label for="fname" class="col-sm-3 text-end control-label col-form-label">Description</label>
                       <div class="col-sm-9">
-                        <input type="text" class="form-control" id="fname" name="exsubcategory"
-                          placeholder="Enter Exsubcategory Name" value="<%= single.exsubcategory %>" />
+                        <input type="text" class="form-control" id="fname" name="description"
+                          placeholder="" value="<%= single.description %>" />
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="fname" class="col-sm-3 text-end control-label col-form-label">price</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control" id="fname" name="price"
+                          placeholder="" value="<%= single.price %>" />
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="fname" class="col-sm-3 text-end control-label col-form-label">image</label>
+                      <div class="col-sm-9">
+                        <input type="file" class="form-control" id="fname" name="image"
+                          placeholder="" value="<%= single.image %>" />
+                        <img src="/<%= single.image %>" width="100"/>
                       </div>
                     </div>
 
