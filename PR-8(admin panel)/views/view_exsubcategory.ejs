@@ -55,13 +55,13 @@
                         <tr>
                           <td><%= ++i %></td>
                           <td>
-                            <%= exscat.categoryId.category_name %>
+                            <%= exscat?.categoryId?.category_name %>
                           </td>
                           <td>
-                            <%= exscat.subcategoryId.subcategory %>
+                            <%= exscat?.subcategoryId?.subcategory %>
                           </td>
                           <td>
-                            <%= exscat.exsubcategory %>
+                            <%= exscat?.exsubcategory %>
                           </td>
                           <td>
                             <a class="btn btn-danger me-2" href="/exsubcategory/deleteexsubcategory?id=<%= exscat.id %>">Delete</a>

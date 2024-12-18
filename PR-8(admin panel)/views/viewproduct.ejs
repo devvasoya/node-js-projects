@@ -58,22 +58,22 @@
                         <tr>
                           <td><%= ++i %></td>
                           <td>
-                            <%= pr.categoryId.category_name %>
+                            <%= pr?.categoryId?.category_name %>
                           </td>
                           <td>
-                            <%= pr.subcategoryId.subcategory %>
+                            <%= pr?.subcategoryId?.subcategory %>
                           </td>
                           <td>
-                            <%= pr.exsubcategoryId.exsubcategory %>
+                            <%= pr?.exsubcategoryId?.exsubcategory %>
                           </td>
                           <td>
-                            <%= pr.description %>
+                            <%= pr?.description %>
                           </td>
                           <td>
-                            <%= pr.price %>
+                            <%= pr?.price %>
                           </td>
                           <td>
-                            <img src="/<%= pr.image %>"  width="100" />
+                            <img src="/<%= pr?.image %>"  width="100" />
                           </td>
                           <td>
                             <a class="btn btn-danger me-2" href="/product/deleteproduct?id=<%= pr.id %>">Delete</a>

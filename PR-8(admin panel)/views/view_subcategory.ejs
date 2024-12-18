@@ -60,10 +60,10 @@
                         <tr>
                           <td><%= ++i %></td>
                           <td>
-                            <%= scat.categoryId.category_name %>
+                            <%= scat?.categoryId?.category_name %>
                           </td>
                           <td>
-                            <%= scat.subcategory %>
+                            <%= scat?.subcategory %>
                           </td>
                           <td>
                             <a class="btn btn-danger me-2" href="/subcategory/deletesubcategory?id=<%= scat.id %>">Delete</a>
