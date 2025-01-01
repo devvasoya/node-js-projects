@@ -1,12 +1,14 @@
 const express=require('express')
 
-const port=8000
+const port=9000
 
 const app=express()
 
 const db=require('./config/db')
-db();
+
 const path=require('path')
+
+
 
 const cors = require('cors'); 
 app.use(cors());

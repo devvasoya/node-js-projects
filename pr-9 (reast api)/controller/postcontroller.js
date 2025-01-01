@@ -4,6 +4,8 @@ const addblog=async(req, res)=>{
 try {
 
     const {title,desc}=req.body
+    console.log(req.body);
+    
 
     if (!title || !desc || !req.file ) {
         return res.status(400).send({
@@ -29,7 +31,7 @@ return res.status(200).send({
 } catch (error) {
     return res.status(501).send({
         success : false,
-        err : error
+        err : error.message
     })
 }
 }

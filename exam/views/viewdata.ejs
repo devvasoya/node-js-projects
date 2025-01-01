@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #343a40;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 20px 0;
+            color: #007bff;
+        }
+
+        table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        thead {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        img {
+            width: 100px;
+            border-radius: 4px;
+        }
+
+        a {
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            margin: 0 4px;
+            display: inline-block;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            color: #fff;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .add-product {
+            display: block;
+            text-align: center;
+            margin: 20px;
+            background-color: #28a745;
+            color: #fff;
+            font-size: 18px;
+        }
+
+        .add-product:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>View Data</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Sr</th>
+                <th>Product Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Image</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <% user.map((product, i) => { %>
+
+            <tr>
+                <td><%= ++i %></td>
+                <td><%= product.productName %></td>
+                <td><%= product.description %></td>
+                <td><%= product.price %></td>
+                <td><%= product.qty %></td>
+                <td><img src="../<%= product.image %>" alt="Product Image"></td>
+                <td>
+                    <a href="/product/deleteproduct?id=<%= product.id %>" class="btn btn-danger">
+                        Delete
+                    </a>
+                    <a href="/product/editeproduct?id=<%= product.id %>" class="btn btn-primary">
+                        Edit
+                    </a>
+                    <a href="/product/addtocartproduct?id=<%= product.id %>" class="btn btn-primary">
+                        Add to Cart
+                    </a>
+                </td>
+            </tr>
+
+            <% }) %>
+        </tbody>
+    </table>
+
+    <a href="/product/addproduct" class="add-product">Add Product</a>
+</body>
+
+</html>
