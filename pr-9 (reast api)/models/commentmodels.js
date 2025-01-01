@@ -1,18 +1,18 @@
 const mongoose=require('mongoose')
 
-const commentSchema = mongoose.Schema({
-    userId:{
+const userschema=mongoose.Schema({
+    userid:{
         type:mongoose.Schema.Types.ObjectId,
-       ref:'user'
+       ref:'api'
     },
-    postId:{
+    postid:{
         type:mongoose.Schema.Types.ObjectId,
-         ref:'post'
+         ref:'blogusers'
     },
     comment:{
         type:String,
         require:true
     }
 })
-const Comment=mongoose.model('Comment',commentSchema)
+const Comment=mongoose.model('Comment',userschema)
 module.exports=Comment
